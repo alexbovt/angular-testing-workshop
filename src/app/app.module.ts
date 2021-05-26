@@ -13,6 +13,8 @@ import { ServiceTestComponent } from './service-test/service-test.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FilterPipe } from './filter-pipe-component/filter-pipe/filter.pipe';
 import { TodoComponent } from './todo/todo.component';
+import { SearchReactiveComponent } from './search-reactive/search-reactive.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { TodoComponent } from './todo/todo.component';
     FilterPipeComponent,
     ServiceTestComponent,
     FilterPipe,
-    TodoComponent
+    TodoComponent,
+    SearchReactiveComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
