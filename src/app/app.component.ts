@@ -1,10 +1,31 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {routes} from './app-routing.module';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+    <mat-toolbar color="primary">
+      <span>Angular Testing Workshop</span>
+    </mat-toolbar>
+
+    <mat-drawer-container>
+      <mat-drawer mode="side" opened>
+
+        <mat-action-list>
+          <mat-list-item *ngFor="let link of links; let index = index" [routerLink]="[link.path]">
+            {{index + 1}}. {{ link.component.name }}
+          </mat-list-item>
+        </mat-action-list>
+
+      </mat-drawer>
+      <mat-drawer-content>
+        <router-outlet></router-outlet>
+      </mat-drawer-content>
+    </mat-drawer-container>
+
+  `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-testing-workshop';
+  readonly links = routes;
 }

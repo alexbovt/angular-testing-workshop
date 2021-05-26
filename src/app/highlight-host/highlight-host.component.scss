@@ -1,0 +1,10 @@
+:host {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, auto);
+  height: 200px;
+}
+
+div{
+  border: 1px solid crimson;
+}
