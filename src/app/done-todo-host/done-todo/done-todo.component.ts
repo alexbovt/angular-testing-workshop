@@ -5,8 +5,8 @@ import {Todo} from '../done-todo-host.component';
 @Component({
   selector: 'app-done-todo',
   template: `
-    <div [class.done]="todo.isDone" (click)="todoClicked.emit(todo)">
-      {{todo.title}}
+    <div [class.done]="todo?.isDone" (click)="todoClicked.emit(todo)">
+      {{todo?.title}}
     </div>
   `,
   styles: [`
@@ -17,7 +17,7 @@ import {Todo} from '../done-todo-host.component';
 })
 export class DoneTodoComponent {
 
-  @Input() todo: Todo;
+  @Input() todo: Todo | undefined;
 
   @Output() todoClicked = new EventEmitter<Todo>();
 }
