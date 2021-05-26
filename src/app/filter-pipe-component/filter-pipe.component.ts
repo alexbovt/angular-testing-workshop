@@ -8,7 +8,6 @@ import {Component} from '@angular/core';
       <li *ngFor="let name of names | filter: nameToFilter">{{name}}</li>
     </ul>
   `,
-  styleUrls: ['./filter-pipe.component.scss']
 })
 export class FilterPipeComponent {
 

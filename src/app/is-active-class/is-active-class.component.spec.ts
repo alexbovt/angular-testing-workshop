@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ServiceTestComponent } from './service-test.component';
+import { IsActiveClassComponent } from './is-active-class.component';
 
-describe('ServiceTestComponent', () => {
-  let component: ServiceTestComponent;
-  let fixture: ComponentFixture<ServiceTestComponent>;
+describe('IsActiveClassComponent', () => {
+  let component: IsActiveClassComponent;
+  let fixture: ComponentFixture<IsActiveClassComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ServiceTestComponent ]
+      declarations: [ IsActiveClassComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ServiceTestComponent);
+    fixture = TestBed.createComponent(IsActiveClassComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

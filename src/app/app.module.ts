@@ -4,28 +4,40 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CounterComponent} from './counter/counter.component';
-import { FilterPipeComponent } from './filter-pipe-component/filter-pipe.component';
-import { ServiceTestComponent } from './service-test/service-test.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { FilterPipe } from './filter-pipe-component/filter-pipe/filter.pipe';
-import { TodoComponent } from './todo/todo.component';
-import { SearchReactiveComponent } from './search-reactive/search-reactive.component';
-import { AddUserComponent } from './add-user/add-user.component';
+import {FilterPipeComponent} from './filter-pipe-component/filter-pipe.component';
+import {FilterPipe} from './filter-pipe-component/filter-pipe/filter.pipe';
+import {SearchReactiveComponent} from './search-reactive/search-reactive.component';
+import {HighlightHostComponent} from './highlight-host/highlight-host.component';
+import {HighlightDirective} from './highlight-host/highlight.directive';
+import {AddTodoHostComponent} from './add-todo-host/add-todo-host.component';
+import {DoneTodoHostComponent} from './done-todo-host/done-todo-host.component';
+import {DoneTodoComponent} from './done-todo-host/done-todo/done-todo.component';
+import {AddTodoComponent} from './add-todo-host/add-todo/add-todo.component';
+import {HttpSerivceComponent} from './http-serivce/http-serivce.component';
+import {TodoService} from './http-serivce/todo.service';
+import { IsActiveClassComponent } from './is-active-class/is-active-class.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CounterComponent,
     FilterPipeComponent,
-    ServiceTestComponent,
     FilterPipe,
-    TodoComponent,
     SearchReactiveComponent,
-    AddUserComponent
+    HighlightHostComponent,
+    HighlightDirective,
+    AddTodoHostComponent,
+    DoneTodoHostComponent,
+    DoneTodoComponent,
+    AddTodoComponent,
+    HttpSerivceComponent,
+    IsActiveClassComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,9 +47,10 @@ import { AddUserComponent } from './add-user/add-user.component';
     MatSidenavModule,
     MatListModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

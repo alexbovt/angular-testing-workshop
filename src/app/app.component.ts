@@ -12,7 +12,9 @@ import {routes} from './app-routing.module';
       <mat-drawer mode="side" opened>
 
         <mat-action-list>
-          <mat-list-item *ngFor="let link of links" [routerLink]="[link.path]">{{ link.path | titlecase }}</mat-list-item>
+          <mat-list-item *ngFor="let link of links; let index = index" [routerLink]="[link.path]">
+            {{index + 1}}. {{ link.component.name }}
+          </mat-list-item>
         </mat-action-list>
 
       </mat-drawer>
@@ -21,11 +23,9 @@ import {routes} from './app-routing.module';
       </mat-drawer-content>
     </mat-drawer-container>
 
-
   `,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
   readonly links = routes;
 }
