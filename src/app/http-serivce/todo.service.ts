@@ -21,7 +21,7 @@ export class TodoService {
     return this.httpClient.get<Post>(`${this.url}/${id}`);
   }
 
-  getAll(): Observable<string[]> {
+  getAllTitles(): Observable<string[]> {
     return this.httpClient.get<Post[]>(this.url).pipe(
       map(posts => posts.map(x => x.title))
     );

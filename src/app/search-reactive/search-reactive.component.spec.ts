@@ -15,7 +15,7 @@ describe('SearchReactiveComponent', () => {
 
   const mocks = {
     result$: new Subject<string[]>(),
-
+    term: 'foo'
   };
 
   const selectors = {
@@ -29,7 +29,12 @@ describe('SearchReactiveComponent', () => {
       imports: [ReactiveFormsModule],
       declarations: [SearchReactiveComponent],
       providers: [
-        {provide: SearchService, useValue: {search: jasmine.createSpy().and.returnValue(mocks.result$)}}
+        {
+          provide: SearchService,
+          useValue: {
+            search: jasmine.createSpy().and.returnValue(mocks.result$)
+          }
+        }
       ]
     })
       .compileComponents();
@@ -46,28 +51,26 @@ describe('SearchReactiveComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  const term = 'foo';
-
   it('should get results from service', fakeAsync(() => {
-    typeToInput(term);
     const spy = jasmine.createSpy();
     // const spy = jest.fn();
     component.results$.subscribe(spy);
+    typeToInput(mocks.term);
     mocks.result$.next(['bar', 'baz']);
     expect(spy).toHaveBeenCalledWith(['bar', 'baz']);
   }));
 
   it('should call service once', fakeAsync(() => {
-    typeToInput('foo');
+    typeToInput(mocks.term);
     expect(service.search).not.toHaveBeenCalled();
     tick(1000);
     expect(service.search).toHaveBeenCalledWith('foo');
   }));
 
   it('should call service once', fakeAsync(() => {
-    typeToInput('foo');
+    typeToInput(mocks.term);
     tick(1000);
-    typeToInput('foo');
+    typeToInput(mocks.term);
     tick(1000);
 
     expect(service.search).toHaveBeenCalledTimes(1);

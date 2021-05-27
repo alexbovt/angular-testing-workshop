@@ -20,7 +20,7 @@ export class HttpSerivceComponent {
 
 
   fetchAll(): void {
-    this.todoService.getAll().subscribe(posts => {
+    this.todoService.getAllTitles().subscribe(posts => {
       this.posts = posts;
     });
   }

@@ -9,9 +9,7 @@ describe('TodoService with HttpTestingController', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        TodoService,
-      ],
+      providers: [TodoService],
       imports: [HttpClientTestingModule]
     });
     service = TestBed.inject(TodoService);
@@ -26,18 +24,15 @@ describe('TodoService with HttpTestingController', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getAll()', done => {
-    service.getAll().subscribe(posts => {
+  it('getAllTitles()', done => {
+    service.getAllTitles().subscribe(posts => {
       expect(posts).toEqual(['Post1', 'Post2']);
       done();
     });
-
     const req = httpTestingController.expectOne(r => {
       return r.url === 'https://jsonplaceholder.typicode.com/posts';
     });
-
     expect(req.request.method).toBe('GET');
-
     req.flush([
       {
         title: 'Post1',

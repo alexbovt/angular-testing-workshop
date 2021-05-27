@@ -1,17 +1,17 @@
 import {TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-
-import {Post, TodoService} from './todo.service';
 import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
+
+import {Post, TodoService} from './todo.service';
 
 describe('TodoService with custom HttpClient', () => {
   let service: TodoService;
   let httpClient: HttpClient;
 
   const mocks = {
-    getResponse: new Subject<any>(),
-    postResponse: new Subject<any>(),
+    getResponse$: new Subject<any>(),
+    postResponse$: new Subject<any>(),
   };
 
   beforeEach(() => {
@@ -19,9 +19,10 @@ describe('TodoService with custom HttpClient', () => {
       providers: [
         TodoService,
         {
-          provide: HttpClient, useValue: {
-            get: jasmine.createSpy().and.returnValue(mocks.getResponse),
-            post: jasmine.createSpy().and.returnValue(mocks.postResponse)
+          provide: HttpClient,
+          useValue: {
+            get: jasmine.createSpy().and.returnValue(mocks.getResponse$),
+            post: jasmine.createSpy().and.returnValue(mocks.postResponse$)
           }
         }
       ],
@@ -35,14 +36,14 @@ describe('TodoService with custom HttpClient', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getAll()', done => {
-    service.getAll().subscribe(posts => {
+  it('getAllTitles()', done => {
+    service.getAllTitles().subscribe(posts => {
       expect(posts).toEqual(['Post1', 'Post2']);
       done();
     });
 
     expect(httpClient.get).toHaveBeenCalledWith('https://jsonplaceholder.typicode.com/posts');
-    mocks.getResponse.next([
+    mocks.getResponse$.next([
       {
         title: 'Post1',
         body: 'Body1',
@@ -63,7 +64,7 @@ describe('TodoService with custom HttpClient', () => {
       done();
     });
     expect(httpClient.get).toHaveBeenCalledWith(`https://jsonplaceholder.typicode.com/posts/${id}`);
-    mocks.getResponse.next({title: 'New Post', body: 'New post body', userId: id});
+    mocks.getResponse$.next({title: 'New Post', body: 'New post body', userId: id});
   });
 
   it('create()', done => {
@@ -73,6 +74,6 @@ describe('TodoService with custom HttpClient', () => {
       done();
     });
     expect(httpClient.post).toHaveBeenCalledWith('https://jsonplaceholder.typicode.com/posts', JSON.stringify(post));
-    mocks.postResponse.next(post);
+    mocks.postResponse$.next(post);
   });
 });
