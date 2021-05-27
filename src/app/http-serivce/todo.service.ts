@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 export interface Post {
   title: string;
@@ -20,8 +21,10 @@ export class TodoService {
     return this.httpClient.get<Post>(`${this.url}/${id}`);
   }
 
-  getAll(): Observable<Post[]> {
-    return this.httpClient.get<Post[]>(this.url);
+  getAll(): Observable<string[]> {
+    return this.httpClient.get<Post[]>(this.url).pipe(
+      map(posts => posts.map(x => x.title))
+    );
   }
 
   create(post: Post): Observable<Post> {

@@ -5,12 +5,12 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(values: string[], filterer: string = ''): unknown {
+  transform(values: string[], filterer = ''): unknown {
     if (values.length < 1 || filterer.length < 1) {
       return values;
     }
 
-    return values.filter(value => value.startsWith(filterer));
+    return values.filter(value => value.toLowerCase().startsWith(filterer.toLowerCase()));
   }
 
 }
